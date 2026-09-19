@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
-  const { lat, lng } = await req.json()
+  const { lat, lng, preset } = await req.json()
 
   const response = await fetch('https://api.mireye.com/v1/fetch', {
     method: 'POST',
@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({
       lat,
       lng,
-      preset: 'flood_risk'
+      preset: preset || 'flood_risk'
     })
   })
 
